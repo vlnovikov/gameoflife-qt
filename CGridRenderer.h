@@ -1,15 +1,24 @@
-#ifndef CGRID_H
-#define CGRID_H
+#pragma once
 
+#include "IRenderer.h"
 
-class CGrid : public IDrawable
+class CGridRenderer : public IRenderer
 {
 public:
-    CGrid();
+    CGridRenderer(bool show, qint32 w, qint32 h, qint32 c);
+    virtual ~CGridRenderer();
 
-signals:
+    virtual void Draw(QPainter &painter) override;
+    virtual bool Visible() override;
+    virtual void Show(bool show) override;
 
-public slots:
+private:
+
+    bool mShowing;
+
+    qint32 mWidth;
+    qint32 mHeight;
+    qint32 mCount;
+
+    QVector<QLine> mLines;
 };
-
-#endif // CGRID_H

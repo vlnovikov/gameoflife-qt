@@ -1,15 +1,21 @@
-#ifndef CCUBES_H
-#define CCUBES_H
+#pragma once
 
+#include "IRenderer.h"
+#include "IGame.h"
 
-class CCubes : public IDrawable
+class CCubeRenderer : public IRenderer
 {
 public:
-    CCubes();
+    CCubeRenderer(QSharedPointer<IGame> game, qint32 w, qint32 h, qint32 c);
+    virtual ~CCubeRenderer();
 
-signals:
+    virtual void Draw(QPainter & painter) override;
+    virtual bool Visible() override;
+    virtual void Show(bool show) override;
 
-public slots:
+private:
+    QSharedPointer<IGame> mGame;
+    qint32 mWidth;
+    qint32 mHeight;
+    qint32 mCount;
 };
-
-#endif // CCUBES_H

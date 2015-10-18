@@ -1,15 +1,13 @@
-#ifndef IDRAWABLE_H
-#define IDRAWABLE_H
+#pragma once
 
+#include <qpainter.h>
 
-class IDrawable
+class IRenderer
 {
 public:
-    IDrawable();
+    virtual ~IRenderer() {}
 
-signals:
-
-public slots:
+    virtual void Draw(QPainter & painter) = 0;
+    virtual bool Visible() = 0;
+    virtual void Show(bool show) = 0;
 };
-
-#endif // IDRAWABLE_H

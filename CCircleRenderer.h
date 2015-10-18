@@ -1,15 +1,21 @@
-#ifndef CCIRCLERENDERER_H
-#define CCIRCLERENDERER_H
+#pragma once
 
+#include "IRenderer.h"
+#include "IGame.h"
 
 class CCircleRenderer : public IRenderer
 {
 public:
-    CCircleRenderer();
+    CCircleRenderer(QSharedPointer<IGame> game, qint32 w, qint32 h, qint32 c);
+    virtual ~CCircleRenderer();
 
-signals:
+    virtual void Draw(QPainter & painter) override;
+    virtual bool Visible() override;
+    virtual void Show(bool show) override;
 
-public slots:
+private:
+    QSharedPointer<IGame> mGame;
+    qint32 mWidth;
+    qint32 mHeight;
+    qint32 mCount;
 };
-
-#endif // CCIRCLERENDERER_H
